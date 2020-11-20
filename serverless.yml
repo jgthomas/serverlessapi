@@ -6,9 +6,17 @@ provider:
   name: aws
   runtime: nodejs12.x
 
+plugins:
+  - serverless-s3-sync
+
 functions:
   hello:
     handler: handler.hello
+
+custom:
+  s3Sync:
+    - bucketName: serverlessapiuploadbucket
+      localDir: upload
 
 resources:
   Resources:
