@@ -9,3 +9,10 @@ provider:
 functions:
   hello:
     handler: handler.hello
+
+resources:
+  Resources:
+    DemoBucketUpload:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: serverlessapiuploadbucket
