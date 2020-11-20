@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   environment:
-    tableName: ${self.custom.tableName}
+    tableName: ${self:custom.tableName}
   iamRoleStatements:
     - Effect: Allow
       Action:
