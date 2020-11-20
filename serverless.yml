@@ -7,10 +7,12 @@ provider:
   runtime: nodejs12.x
   environment:
     tableName: ${self:custom.tableName}
+    bucketName: ${self:custom.s3UploadBucket}
   iamRoleStatements:
     - Effect: Allow
       Action:
         - dynamodb:*
+        - s3:*
       Resource: "*"
 
 functions:
@@ -35,16 +37,24 @@ functions:
           path: create-player-score/{ID}
           method: POST
           cors: true
+  createFile:
+    handler: lambdas/endpoints/createFile.handler
+    events:
+      - http:
+          path: create-file/{fileName}
+          method: POST
+          cors: true
 
 custom:
   tableName: player-points
+  s3UploadBucket: serverlessapiuploadbucket
 
 resources:
   Resources:
     DemoBucketUpload:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: serverlessapiuploadbucket
+        BucketName: ${self:custom.s3UploadBucket}
     MyDynamoDbTable:
       Type: AWS::DynamoDB::Table
       Properties:
