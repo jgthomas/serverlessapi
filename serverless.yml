@@ -44,6 +44,13 @@ functions:
           path: create-file/{fileName}
           method: POST
           cors: true
+  getFile:
+    handler: lambdas/endpoints/getFile.handler
+    events:
+      - http:
+          path: get-file/{fileName}
+          method: GET
+          cors: true
 
 custom:
   tableName: player-points
