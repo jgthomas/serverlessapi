@@ -20,7 +20,7 @@ functions:
     handler: lambdas/endpoints/getUser.handler
     events:
       - http:
-          path: get-user/{ID}
+          path: get-user
           method: GET
           cors: true
   getPlayerScore:
